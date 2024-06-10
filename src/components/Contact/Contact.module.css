@@ -1,0 +1,17 @@
+.container {
+  max-width: 378px;
+  padding: 14px;
+  border: 1px solid black;
+}
+
+.contact_name {
+  margin-bottom: 10px;
+}
+
+.contact_number {
+  margin-bottom: 10px;
+}
+
+.button_delete {
+  width: 80px;
+}
