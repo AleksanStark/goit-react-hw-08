@@ -1,7 +1,7 @@
 import { Field, Formik, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
-import toast from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const LoginForm = () => {
           <label htmlFor="password">Password</label>
           <Field type="text" name="password" />
           <button type="submit">Sign In</button>
+          <Toaster />
         </Form>
       </Formik>
     </div>

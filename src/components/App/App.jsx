@@ -10,6 +10,7 @@ import { Oval } from "react-loader-spinner";
 import RestrictedRoute from "../RestrictedRoute";
 import LoginPage from "../../pages/LoginPage/LoginPage";
 import ContactsPage from "../../pages/ContactsPage/ContactsPage";
+import PrivateRoute from "../PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,15 @@ const App = () => {
               path="/login"
               element={<RestrictedRoute component={<LoginPage />} />}
             />
-            <Route path="/contacts" element={<ContactsPage />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  component={<ContactsPage />}
+                  redirectTo={"/login"}
+                />
+              }
+            />
           </Routes>
         </Suspense>
       </Layout>
