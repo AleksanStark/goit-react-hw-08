@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addContact, deleteContact, fetchContacts } from "./contactsOps";
+import { addContact, deleteContact, fetchContacts } from "./operations";
 import { createSelector } from "@reduxjs/toolkit";
-import { selectContacts, selectNameFilter } from "./selectors";
+import { selectContacts } from "./selectors";
+import { selectNameFilter, selectNumberFilter } from "../filters/selectors";
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -38,6 +39,7 @@ const contactsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
@@ -46,11 +48,12 @@ const contactsSlice = createSlice({
 });
 
 export const selectFilteredContacts = createSelector(
-  [selectContacts, selectNameFilter],
-  (contacts, name) => {
-    console.log("Need Memo");
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(name.toLowerCase())
+  [selectContacts, selectNameFilter, selectNumberFilter],
+  (contacts, name, number) => {
+    return contacts.filter(
+      (contact) =>
+        contact.name.toLowerCase().includes(name.toLowerCase()) ||
+        contact.number.includes(number)
     );
   }
 );
