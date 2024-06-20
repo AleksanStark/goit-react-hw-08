@@ -4,15 +4,20 @@ import App from "./components/App/App.jsx";
 import "modern-normalize";
 import "./index.css";
 import { Provider } from "react-redux";
-import { store } from "./redux/store.js";
+import { persistor, store } from "./redux/store.js";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
+import { Oval } from "react-loader-spinner";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
+      <PersistGate loading={<Oval />} persistor={persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
+      </PersistGate>
+  
     </Provider>
   </React.StrictMode>
 );

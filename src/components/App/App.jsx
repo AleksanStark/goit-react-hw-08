@@ -29,11 +29,11 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route
               path="/register"
-              element={<RestrictedRoute component={<RegistrationPage />} />}
+              element={<RestrictedRoute component={<RegistrationPage />} redirectTo="/" />}
             />
             <Route
               path="/login"
-              element={<RestrictedRoute component={<LoginPage />} />}
+              element={<RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />}
             />
             <Route
               path="/contacts"
